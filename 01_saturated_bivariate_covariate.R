@@ -1,5 +1,5 @@
 rm(list = ls())
-setwd("~/GitHub/ReHo_fALFF_heritability")
+setwd("~/GitHub/qtab/rsfMRI/CerebCortex_ms")
 
 #### Load libraries ####
 library(OpenMx)
@@ -281,7 +281,7 @@ qtab.data <- readRDS("QTAB_wide_waves.RDS")
 Saturated_bivariate_covariate(phenotype = "MFG_R_7_3_reho", twin.data = qtab.data)
 
 # Run for a list of phenotypes
-variable_list <- readLines("BN_variables.txt")[1:210]
+variable_list <- readLines("BN_variables.txt")
 reho <- paste0(variable_list, "_reho")
 alff <- paste0(variable_list, "_alff")
 

@@ -1,9 +1,10 @@
 rm(list = ls())
-setwd("~/GitHub/ReHo_fALFF_heritability")
+setwd("~/GitHub/qtab/rsfMRI/CerebCortex_ms")
 
 #### Load libraries ####
 library(OpenMx)
 library(tidyverse)
+library(parallel)
 source("miFunctions.R")
 mxOption(NULL, "Default optimizer", "NPSOL") # SLSQP CSOLNP NPSOL
 mxOption(NULL, key="Number of Threads", value=8)
@@ -459,5 +460,5 @@ variable_list <- readLines("BN_variables.txt")[1:210]
 reho <- paste0(variable_list, "_reho")
 alff <- paste0(variable_list, "_alff")
 
-lapply(reho, Chol_path, twin.data = qtab.data)
-lapply(alff, Chol_path, twin.data = qtab.data)
+mclapply(reho, Chol_path, twin.data = qtab.data, mc.cores = 4)
+mclapply(alff, Chol_path, twin.data = qtab.data, mc.cores = 4)
